@@ -1,9 +1,9 @@
-find . -maxdepth 2 -mindepth 2 -type d > subdirs.txt
-find . -maxdepth 2 -mindepth 2 -name '*.tar.gz' > compressed_projects.txt
+find /n/data1/cores/bcbio/PIs/ -maxdepth 2 -mindepth 2 -type d > /n/data1/cores/bcbio/PIs/size_monitoring/subdirs.txt
+find /n/data1/cores/bcbio/PIs/ -maxdepth 2 -mindepth 2 -name '*.tar.gz' > /n/data1/cores/bcbio/PIs/size_monitoring/compressed_projects.txt
 
 
 readonly tab=$'\t'
-echo -e "subdirectory\tsize_bytes\tsize_human\towner\tlast_date\ttype" >dir_owners_and_sizes.tsv
+echo -e "subdirectory\tsize_bytes\tsize_human\towner\tlast_date\ttype" >/n/data1/cores/bcbio/PIs/size_monitoring/dir_owners_and_sizes.tsv
 
 function scan_directories {
 	size_gb=`du -sh $subdir  2>/dev/null | awk '{print $1}'|  tr -d '\n'`
@@ -19,7 +19,7 @@ function scan_directories {
 while read -r subdir
 do
 	scan_directories &
-done <subdirs.txt >>dir_owners_and_sizes.tsv
+done </n/data1/cores/bcbio/PIs/size_monitoring/subdirs.txt >>/n/data1/cores/bcbio/PIs/size_monitoring/dir_owners_and_sizes.tsv
 
 
 function scan_compressed {
@@ -34,6 +34,6 @@ function scan_compressed {
 while read -r compressed_project
 do
 	scan_compressed &
-done <compressed_projects.txt >>dir_owners_and_sizes.tsv
+done </n/data1/cores/bcbio/PIs/size_monitoring/compressed_projects.txt >>/n/data1/cores/bcbio/PIs/size_monitoring/dir_owners_and_sizes.tsv
 
 
