@@ -1,7 +1,7 @@
-#find . -name "*.fastq"  > fastq_files.txt
-#find . -name "*.fastq.gz"  > fastq.gz_files.txt
-#find . -name "*.fq"  > fq_files.txt
-#find . -name "*.fq.gz"  > fq.gz_files.txt
+#find /n/data1/cores/bcbio/PIs/ -name "*.fastq"  > /n/data1/cores/bcbio/PIs/size_monitoring/fastq_files.txt
+#find /n/data1/cores/bcbio/PIs/ -name "*.fastq.gz"  > /n/data1/cores/bcbio/PIs/size_monitoring/fastq.gz_files.txt
+#find /n/data1/cores/bcbio/PIs/ -name "*.fq"  > /n/data1/cores/bcbio/PIs/size_monitoring/fq_files.txt
+#find /n/data1/cores/bcbio/PIs/ -name "*.fq.gz"  > /n/data1/cores/bcbio/PIs/size_monitoring/fq.gz_files.txt
 
 while read -r fastqfile
 do
@@ -14,7 +14,8 @@ do
 	then
 		echo $directory
 	fi
-done < fastq_files.txt
+done < /n/data1/cores/bcbio/PIs/size_monitoring/fastq_files.txt
+
 
 while read -r fqfile
 do
@@ -27,7 +28,7 @@ do
 	then
 	echo $directory
 	fi
-done < fq_files.txt
+done < /n/data1/cores/bcbio/PIs/size_monitoring/fq_files.txt
 
 while read -r fastqgzfile
 do
@@ -39,7 +40,7 @@ do
 	then
 	echo $directory
 	fi
-done < fastq.gz_files.txt
+done < /n/data1/cores/bcbio/PIs/size_monitoring/fastq.gz_files.txt
 
 while read -r fqgzfile
 do
@@ -51,5 +52,5 @@ do
 	then
 	echo $directory
 	fi
-done < fq.gz_files.txt
+done < /n/data1/cores/bcbio/PIs/size_monitoring/fq.gz_files.txt
 
