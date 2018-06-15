@@ -5,16 +5,15 @@ library(dplyr)
 library(ggplot2)
 library(lubridate)
 
+setwd("~/Orchestra/PIs/size_monitoring/2018-06-14/")
 data <- import("dir_owners_and_sizes.tsv")
 our_ids <- c("rdk4","rsk27","mm573","lp113","jnh7","mjs65","mp298","as695","vb83","sh234")
 
 data <- data %>%
   tbl_df() %>%
   mutate(., last_date=as.Date(last_date , format="%Y-%m-%d")) %>%
-  separate(., size_human, into=c("size", "modifier"), sep=-2) %>%
-
+  separate(., size_human, into=c("size", "modifier"), sep=-1) %>%
   mutate(size=as.numeric(size)) %>%
-
   mutate(., gigabytes=ifelse(modifier=="G", size,
                              ifelse(modifier=="T", size*1000,
                                     ifelse(modifier=="M", size/1000,
